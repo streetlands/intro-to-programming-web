@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Photos</title>
+  <style>
+    /* This CSS makes the image a full-screen backdrop */
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+    
+    body {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover; /* This scales the image to cover the page */
+      background-attachment: fixed; /* This keeps the backdrop fixed when scrolling */
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hello, World!</h1>
+  <p>Refresh the page to see a new background.</p>
+
+  <script>
+    document.body.style.backgroundImage = "url('https://picsum.photos/1920/1080?random=" + Math.random() + "')";
+  </script>
+
+   <select name="page" id="pages" onchange="goToPage()">
+        <option value="">Select a page...</option> <option value="home">Home</option>
+        <option value="about">About</option>
+        <option value="songs">Songs</option>
+        <option value="photos">Photos</option>
+    </select> 
+    
+    <script>
+    function goToPage() {
+      // 1. Get the dropdown element
+      var select = document.getElementById("pages");
+      
+      // 2. Get the value of the selected option (e.g., "home", "about")
+      var pageValue = select.value;
+      
+      // 3. Check if a real option was selected (not the placeholder)
+      if (pageValue) {
+        // 4. Tell the browser to go to the new page (e.g., "about.html")
+        window.location.href = pageValue + ".html";
+      }
+    }
+    </script>
+</body>
+</html>

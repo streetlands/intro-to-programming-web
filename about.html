@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Me</title>
+</head>
+<body style="font-family: sans-serif; padding: 20px;">
+    <h2>About Yi Tao</h2>
+    <h3>This is the page all about me!</h3>
+    
+   <select name="page" id="pages" onchange="goToPage()">
+        <option value="">Select a page...</option> <option value="home">Home</option>
+        <option value="about">About</option>
+        <option value="songs">Songs</option>
+        <option value="photos">Photos</option>
+    </select> 
+    
+    <script>
+    function goToPage() {
+      // 1. Get the dropdown element
+      var select = document.getElementById("pages");
+      
+      // 2. Get the value of the selected option (e.g., "home", "about")
+      var pageValue = select.value;
+      
+      // 3. Check if a real option was selected (not the placeholder)
+      if (pageValue) {
+        // 4. Tell the browser to go to the new page (e.g., "about.html")
+        window.location.href = pageValue + ".html";
+      }
+    }
+    </script>
+</body>
+</html>

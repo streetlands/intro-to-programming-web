@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Songs</title>
+</head>
+<body>
+
+  <h1>These are 5 songs I like!</h1>
+  <ol>
+    <li><a href="https://www.youtube.com/watch?v=2cJsExmQ2R4"> Gurre-Lieder: Part I - Orchestral Prelude</a></li>
+    <li><a href="https://www.youtube.com/watch?v=I1JG3mETWvg">babysbreath</a></li>
+    <li><a href="url">link text</a></li>
+    <li><a href="url">link text</a></li>
+    <li><a href="url">link text</a></li>
+    
+    <select name="page" id="pages" onchange="goToPage()">
+        <option value="">Select a page...</option> <option value="home">Home</option>
+        <option value="about">About</option>
+        <option value="songs">Songs</option>
+        <option value="photos">Photos</option>
+    </select> 
+    
+    <script>
+    function goToPage() {
+      // 1. Get the dropdown element
+      var select = document.getElementById("pages");
+      
+      // 2. Get the value of the selected option (e.g., "home", "about")
+      var pageValue = select.value;
+      
+      // 3. Check if a real option was selected (not the placeholder)
+      if (pageValue) {
+        // 4. Tell the browser to go to the new page (e.g., "about.html")
+        window.location.href = pageValue + ".html";
+      }
+    }
+    </script>
+
+  
+</body>
+</html>
