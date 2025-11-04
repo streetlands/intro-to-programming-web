@@ -17,6 +17,9 @@
       background-size: cover; /* This scales the image to cover the page */
       background-attachment: fixed; /* This keeps the backdrop fixed when scrolling */
     }
+    html {
+  cursor: help;
+}
   </style>
 </head>
 <body>
@@ -25,7 +28,7 @@
     <ul>
         <li> My name is <strong>Tao</strong> </li>
         <li> I live in <strong>Hong Kong</strong> </li>
-        <li> I am <strong>23</strong>years old</li>
+        <li> I am <strong>23</strong> years old</li>
         <li> I am a <strong>Musician</strong></li>
         <li> Refresh the page to see another picture! </li>
     </ul>
@@ -35,7 +38,7 @@
     <label for="pages">Browse Me:</label>
     
     <select name="page" id="pages" onchange="goToPage()">
-        <option value="">Select a page...</option> <option value="home">Home</option>
+        <option value="">Select a page...</option> <option value="index">Home</option>
         <option value="about">About</option>
         <option value="songs">Songs</option>
         <option value="photos">Photos</option>
