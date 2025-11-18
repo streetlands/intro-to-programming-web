@@ -1,64 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<link rel="stylesheet" href="style3.css">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yi Tao</title>
-      <style>
-    body, html {
-      height: 100%;
-      margin: 0;
-    }
-    
-    body {
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover; 
-      background-attachment: fixed; 
-    }
-    html {
-  cursor: help;
-}
-  </style>
+  <title>HOYIKTO</title>
 </head>
-<body>
-    <h1>Yi Tao</h1>
-    <p>Yi Tao is a composer from Hong Kong.</p>
-    <ul>
-        <li> My name is <strong>Tao</strong> </li>
-        <li> I live in <strong>Hong Kong</strong> </li>
-        <li> I am <strong>23</strong> years old</li>
-        <li> I am a <strong>Musician</strong></li>
-        <li> Refresh the page to see another picture! </li>
-    </ul>
+<audio loop hidden id="bg-music">
+  <source src="whiteLight.mp3" type="audio/mpeg">
+</audio>
+<body bgcolor="#bcbcbc" link=""#b9b9b9" alink="#aaaaaa" vlink="#151515">
+<dl>
+  <dt>
+    <div align="CENTER">
+      <b>
+        <font face="Arial">
+          <a href="about.html">HOYIKTO</a>
+        </font>
+      </b>
+  </dt>
+<dt>
+  <div align="CENTER">
+  <table width="453" border="14" cellspacing="0" cellpadding="0" height="560">
+    <tbody>
+      <tr>
+        <td width="100%">
+          <map name="yiktoMap"></map>
+          
+          <img src="yiktomap.png" border="0" usemap="index.html#yiktoMap" height="560" width="453">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</dt>
+</dl>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var audio = document.getElementById("bg-music");
 
-    <br>
-
-    <label for="pages">Browse Me:</label>
-    
-    <select name="page" id="pages" onchange="goToPage()">
-        <option value="">Select a page...</option> <option value="index">Home</option>
-        <option value="about">About</option>
-        <option value="songs">Songs</option>
-        <option value="photos">Photos</option>
-    </select>
-
-    <script>
-        document.body.style.backgroundImage = "url('https://picsum.photos/1920/1080?random=" + Math.random() + "')";
-    </script>
-
-    <script>
-    function goToPage() {
-
-      var select = document.getElementById("pages");
-      
-      var pageValue = select.value;
-      
-      if (pageValue) {
-        window.location.href = pageValue + ".html";
-      }
+    // Function to play audio
+    function playAudio() {
+      audio.play().then(() => {
+        // Audio started! Remove the listener so it doesn't try to play again
+        document.removeEventListener('click', playAudio);
+      }).catch(error => {
+        console.log("Autoplay prevented by browser.");
+      });
     }
-    </script>
-</body> 
-</html>
+
+    // Try to play immediately (in case browser allows it)
+    playAudio();
+
+    // If that fails, wait for the first user interaction (click)
+    document.addEventListener('click', playAudio);
+  });
+</script>
+</body>
