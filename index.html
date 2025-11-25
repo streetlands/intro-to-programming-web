@@ -2,16 +2,13 @@
 <head>
   <title>HOYIKTO</title>
 </head>
-<audio loop hidden id="bg-music">
-  <source src="whiteLight.mp3" type="audio/mpeg">
-</audio>
 <body bgcolor="#bcbcbc" link=""#b9b9b9" alink="#aaaaaa" vlink="#151515">
 <dl>
   <dt>
     <div align="CENTER">
       <b>
         <font face="Arial">
-          <a href="about.html">HOYIKTO</a>
+          <a href="songs.html">HERE, WHERE THE WORLD IS QUIET</a>
         </font>
       </b>
   </dt>
@@ -21,34 +18,15 @@
     <tbody>
       <tr>
         <td width="100%">
-          <map name="yiktoMap"></map>
+          <map name="yiktoMap">
+          <area shape="polygon" coords="264,221,268,196,308,194,321,221,321,256,364,287,366,357,294,449,246,406,191,257" href="about.html" onmouseover="self.status='Alibi, un petit malin qui se tire toujours d\'affaire.';return true" onmouseout="self.status='';return true">
           
           <img src="yiktomap.png" border="0" usemap="index.html#yiktoMap" height="560" width="453">
+          </map>
         </td>
       </tr>
     </tbody>
   </table>
 </dt>
 </dl>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var audio = document.getElementById("bg-music");
-
-    // Function to play audio
-    function playAudio() {
-      audio.play().then(() => {
-        // Audio started! Remove the listener so it doesn't try to play again
-        document.removeEventListener('click', playAudio);
-      }).catch(error => {
-        console.log("Autoplay prevented by browser.");
-      });
-    }
-
-    // Try to play immediately (in case browser allows it)
-    playAudio();
-
-    // If that fails, wait for the first user interaction (click)
-    document.addEventListener('click', playAudio);
-  });
-</script>
 </body>

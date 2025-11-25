@@ -1,46 +1,240 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Songs</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HERE, WHERE THE WORLD IS QUIET</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --dot-color: #fe0000;
+            /* Dynamic variables set by JS per song */
+            --song-color: #000;
+            --song-height: 30px;
+            --phase-1-dur: 0s;
+            --phase-3-dur: 0s;
+        }
+
+        body {
+            background: #FFF;
+            color: var(--primary);
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        #text {
+            position: absolute;
+            width: 300px;
+            top: 20%;
+            text-align: center;
+            transition: opacity 1s;
+        }
+
+        /* The Main Interactive Container */
+        #container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* The Button / Dot */
+        #btn {
+            z-index: 10;
+            cursor: pointer;
+            color: #66F;
+            font-weight: bold;
+            transition: all 0.5s;
+            user-select: none;
+        }
+
+        /* State: When it becomes a Dot */
+        #btn.is-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--dot-color);
+            border-radius: 50%;
+            color: transparent; /* Hide text */
+            font-size: 0;
+        }
+
+        /* The Animated Shape */
+        #shape {
+            position: absolute;
+            z-index: 5;
+            background: var(--song-color);
+            width: 30px;
+            height: var(--song-height);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* --- Phase 1: Appearing --- */
+        #shape.phase-1 {
+            /* Animate from White -> Color, Blurred -> Sharp */
+            animation: appear var(--phase-1-dur) linear forwards;
+        }
+
+        /* --- Phase 3: Shrinking --- */
+        #shape.phase-3 {
+            /* Animate Color -> Dot Pink, Size -> Small */
+            transition: all var(--phase-3-dur) linear;
+            background: var(--dot-color);
+            width: 10px; /* Target dot size */
+            height: 10px; /* Target dot size */
+            border-radius: 50%;
+            filter: blur(2px); /* Slight blur at end */
+            opacity: 0; /* Fade out as dot takes over */
+        }
+
+        /* --- CSS Keyframes for "Appearing" (Replaces JS Math) --- */
+        @keyframes appear {
+            0% { background: #000000; filter: blur(20px); opacity: 0; }
+            100% { background: var(--song-color); filter: blur(0px); opacity: 1; }
+        }
+
+        /* Specific Transform Effects */
+        .fx-rotate   { animation: spin var(--phase-1-dur) ease-out; }
+        .fx-rotateX  { animation: flipX var(--phase-1-dur) linear; }
+        .fx-rotateY  { animation: flipY var(--phase-1-dur) ease-in-out; }
+        .fx-skew     { animation: skewBoth var(--phase-1-dur) linear; }
+        .fx-skewX    { animation: skewX var(--phase-1-dur) linear; }
+        .fx-scale    { animation: pulse var(--phase-1-dur) ease-in-out; }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(2160deg); } }
+        @keyframes flipX { 0% { transform: rotateX(0deg); } 100% { transform: rotateX(720deg); } }
+        @keyframes flipY { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(720deg); } }
+        @keyframes skewBoth { 0% { transform: skew(0,0); } 100% { transform: skew(720deg, 720deg); } }
+        @keyframes skewX { 0% { transform: skewX(0); } 100% { transform: skewX(720deg); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(0.2); } 100% { transform: scale(1); } }
+
+    </style>
 </head>
 <body>
-<!DOCTYPE html>
-<html>
-<head>
-  
-  <link rel="stylesheet" href="style.css">
-</html>
-  <h1>These are 5 songs I like!</h1>
-  <ol>
-    <li><a href="https://www.youtube.com/watch?v=2cJsExmQ2R4"> Gurre-Lieder: Part I - Orchestral Prelude</a></li>
-    <li><a href="https://www.youtube.com/watch?v=I1JG3mETWvg">babysbreath</a></li>
-    <li><a href="https://www.youtube.com/watch?v=uiJcS9hK1sA">My Mind Went Blank</a></li>
-    <li><a href="https://www.youtube.com/watch?v=Ugyp4CZF8rU&rco=1">Frankie Teardrop</a></li>
-    <li><a href="https://www.youtube.com/watch?v=WjnziT3XPf0">Sreo Sam Te</a></li>
-    
-    <select name="page" id="pages" onchange="goToPage()">
-        <option value="">Select a page...</option> <option value="index">Home</option>
-        <option value="about">About</option>
-        <option value="songs">Songs</option>
-        <option value="photos">Photos</option>
-    </select> 
-    
-    <script>
-    function goToPage() {
-      // 1. Get the dropdown element
-      var select = document.getElementById("pages");
-      
-      // 2. Get the value of the selected option (e.g., "home", "about")
-      var pageValue = select.value;
-      
-      // 3. Check if a real option was selected (not the placeholder)
-      if (pageValue) {
-        // 4. Tell the browser to go to the new page (e.g., "about.html")
-        window.location.href = pageValue + ".html";
-      }
-    }
-    </script>
 
-  
+    <audio id="audio"></audio>
+
+    <div id="text">
+        COMPOSED IN 2025 BY HOYIKTO. CLICK "LISTEN" TO START.
+    </div>
+
+    <div id="container">
+        <div id="btn">listen</div>
+        <div id="shape"></div>
+    </div>
+
+<script>
+    // Data Configuration
+    const songs = [
+        { file: "ao",  color: "#AA7D9F", h: 27, fx: "fx-rotate" },
+        { file: "hm",  color: "#C44883", h: 45, fx: "fx-rotateX" },
+        { file: "h",   color: "#BE2168", h: 23, fx: "fx-rotate" }, // reused rotate for index 2
+        { file: "oi",  color: "#990000", h: 41, fx: "fx-rotateY" },
+        { file: "hu",  color: "#B72B91", h: 21, fx: "fx-skew" },
+        { file: "hhh", color: "#D3370A", h: 42, fx: "fx-skewX" },
+        { file: "aa",  color: "#E0921D", h: 25, fx: "fx-scale" }
+    ];
+
+    // State
+    let index = 0;
+    let loopCount = 0;
+    let isPlaying = false;
+
+    // Elements
+    const audio = document.getElementById('audio');
+    const btn = document.getElementById('btn');
+    const shape = document.getElementById('shape');
+    const root = document.documentElement.style; // For CSS Variables
+
+    btn.addEventListener('click', () => {
+        if (isPlaying) return;
+        isPlaying = true;
+        
+        // 1. Setup Audio & Fallback Duration
+        const song = songs[index];
+        audio.src = `${song.file}.mp3`;
+        
+        // Try to play. If fails (no file), use fallback duration
+        audio.play().catch(() => console.log("Audio file missing, using visual simulation."));
+        
+        // Wait for audio metadata to get real duration, or use default 2.5s
+        audio.onloadedmetadata = () => runAnimation(audio.duration);
+        audio.onerror = () => runAnimation(2.5); 
+
+        // Update Text & Title
+        document.title = `HERE, WHERE THE WORLD IS QUIET - Playing`;
+        if (index === 0) document.getElementById('text').style.opacity = 0;
+    });
+
+    function runAnimation(duration) {
+        const song = songs[index];
+
+        // 2. Calculate Timings
+        let d3 = Math.min(duration / 3, 0.4); // Shrink phase
+        let d1 = (duration - d3) * 0.67;      // Appear phase
+        let d2 = duration - d1 - d3;          // Rest phase
+
+        // 3. Set CSS Variables (Pass data to CSS)
+        root.setProperty('--song-color', song.color);
+        root.setProperty('--song-height', `${song.h}px`);
+        root.setProperty('--phase-1-dur', `${d1}s`);
+        root.setProperty('--phase-3-dur', `${d3}s`);
+
+        // 4. Start Visual Sequence
+        btn.style.opacity = 0; // Hide button
+        
+        // PHASE 1: APPEAR
+        shape.className = `phase-1 ${song.fx}`;
+        
+        // PHASE 2: REST (After d1 seconds)
+        setTimeout(() => {
+            shape.className = ""; // Removing class stops animation (resting state)
+            shape.style.opacity = 1; 
+            // We set static styles to keep it visible while resting
+            shape.style.transform = "none"; 
+        }, d1 * 1000);
+
+        // PHASE 3: SHRINK (After d1 + d2 seconds)
+        setTimeout(() => {
+            shape.className = "phase-3"; // Triggers CSS transition to dot
+        }, (d1 + d2) * 1000);
+
+        // END: RESET (After total duration)
+        setTimeout(() => {
+            reset();
+        }, duration * 1000);
+    }
+
+    function reset() {
+        isPlaying = false;
+        
+        // Reset Visuals
+        shape.className = "";
+        shape.style.opacity = 0;
+        shape.style.width = "30px"; // Reset width for next time
+        shape.style.borderRadius = "0";
+
+        // Show Button as Dot
+        btn.className = "is-dot";
+        btn.style.opacity = 1;
+
+        // Logic for next song (Loop song 3 twice, etc)
+        if (index === 2 && loopCount < 1) {
+            loopCount++;
+        } else {
+            if (index < songs.length - 1) index++;
+            loopCount = 0;
+        }
+    }
+</script>
+
 </body>
 </html>
