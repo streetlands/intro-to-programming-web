@@ -1,9 +1,4 @@
-body {
-  background-color: lch(50.12% 17.53 237.95);
-
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-
-  font-style: italic;
-
-  font-weight: bold;
+css
+.p td {
+    padding: 0 15px; /* Adds 15px of padding to the left and right of each link */
 }
