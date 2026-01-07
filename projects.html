@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HO YIK TO</title>
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <style type="text/css">
+            .p a {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 16px;
+                font-weight: normal;
+                text-decoration: none;
+                color: black;
+                transition: text-shadow 0.2s;
+                display: inline-block;
+            }
+
+            .p a:hover {
+                text-shadow: 0.70px 0 0 currentColor;
+            }
+            
+            /* Remove bullet points from the list */
+            .p ul {
+                list-style-type: none;
+                padding-left: 0;
+                margin: 0 0 20px 0; /* Add bottom margin for image display area */
+            }
+            
+            /* Add spacing between links */
+            .p li {
+                margin-bottom: 10px;
+            }
+            
+            /* Image container that appears below the list */
+            .image-container {
+                position: relative;
+                min-height: 200px; /* Reserve space for images */
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            /* Individual hover images - hidden by default */
+            .hover-image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 800px; /* Adjust image size as needed */
+                height: auto;
+                max-width: 100%;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.1s ease;
+                border-radius: 4px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="p">
+            <ul>
+                <li><a href="https://example.com" data-image="example">GANSU, JANUARY 2026</a></li>
+                <li><a href="https://github.com" data-image="github">BLANK</a></li>
+                <li><a href="https://linkedin.com" data-image="linkedin">BLANK</a></li>
+                <li><a href="portfolio.html" data-image="portfolio">BLANK</a></li>
+                <li><a href="contact.html" data-image="contact">BLANK</a></li>
+                <li><a href="about.html" data-image="about">BLANK</a></li>
+            </ul>
+            
+            <div class="image-container" id="imageContainer">
+                <!-- Images will be displayed here -->
+                <img src="gansu.jpg" alt="BLANK PREVIEW" class="hover-image" id="exampleImage" data-target="example">
+                <img src="image2.jpg" alt="BLANK PREVIEW" class="hover-image" id="githubImage" data-target="github">
+                <img src="image3.jpg" alt="BLANK PREVIEW" class="hover-image" id="linkedinImage" data-target="linkedin">
+                <img src="image4.jpg" alt="BLANK PREVIEW" class="hover-image" id="portfolioImage" data-target="portfolio">
+                <img src="image5.jpg" alt="BLANK PREVIEW" class="hover-image" id="contactImage" data-target="contact">
+                <img src="image6.jpg" alt="BLANK PREVIEW" class="hover-image" id="aboutImage" data-target="about">
+            </div>
+        </div>
+        
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.p a[data-image]');
+            const allImages = document.querySelectorAll('.hover-image');
+            const imageContainer = document.getElementById('imageContainer');
+            
+            // Hide all images initially
+            allImages.forEach(img => {
+                img.style.opacity = '0';
+                img.style.visibility = 'hidden';
+            });
+            
+            // Add hover event to each link
+            links.forEach(link => {
+                const imageId = link.getAttribute('data-image');
+                const targetImage = document.getElementById(imageId + 'Image');
+                
+                if (!targetImage) return;
+                
+                link.addEventListener('mouseenter', function() {
+                    // Hide all images
+                    allImages.forEach(img => {
+                        img.style.opacity = '0';
+                        img.style.visibility = 'hidden';
+                    });
+                    
+                    // Show the corresponding image
+                    targetImage.style.opacity = '1';
+                    targetImage.style.visibility = 'visible';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    // Optional: Keep image visible or hide it
+                    // For now, we'll hide it when mouse leaves the link
+                    // targetImage.style.opacity = '0';
+                    // targetImage.style.visibility = 'hidden';
+                });
+            });
+            
+            // Optional: Keep image visible when hovering over the image container
+            imageContainer.addEventListener('mouseenter', function() {
+                // Don't hide images when hovering over the container
+            });
+            
+            imageContainer.addEventListener('mouseleave', function() {
+                // Hide all images when mouse leaves the container
+                allImages.forEach(img => {
+                    img.style.opacity = '0';
+                    img.style.visibility = 'hidden';
+                });
+            });
+        });
+        </script>
+    </body>
+</html>
