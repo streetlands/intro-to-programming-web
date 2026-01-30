@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>HO YIK TO</title>
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
-        <style type="text/css">
+<head>
+    <meta charset="UTF-8">
+    <title>HO YIK TO</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style type="text/css">
+       /* --- Timeline Text Styles --- */
        .timeline p {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 16px;
@@ -15,13 +16,38 @@
         .year {
         font-weight: bold;
         display: inline-block;
-        width: 100px; /* Fixed width for alignment */
-        margin-right: 20px; /* Space between year and text */
+        width: 100px;
+        margin-right: 20px;
+       }
+
+       /* --- Back Button Styles --- */
+       .back-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        
+        /* Matching the timeline p styles exactly */
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        color: black;      /* Ensures it is black like the text, not blue */
+        text-decoration: none; /* Removes the underline */
+        cursor: pointer;
+       }
+
+       /* Optional: Adds an underline only when you hover over it */
+       .back-button:hover {
+        text-decoration: none;
        }
 </style>
+</head>
+<body>
 
-<div class="timeline">
-    <p><span class="year">2002</span> BORN IN HONG KONG</p>
-    <p><span class="year">2026</span> GRADUATED FROM BERKLEE COLLEGE OF MUSIC, BOSTON</p>
-    <p><span class="year">2026</span> MOVED TO NEW YORK</p>
-</div>
+    <a href="javascript:history.back()" class="back-button">BACK</a>
+
+    <div class="timeline">
+        <p><span class="year">2002</span> BORN IN HONG KONG</p>
+        <p><span class="year">2026</span> GRADUATED FROM BERKLEE COLLEGE OF MUSIC, BOSTON</p>
+    </div>
+
+</body>
+</html>

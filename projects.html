@@ -53,24 +53,46 @@
                 transition: opacity 0.1s ease;
                 border-radius: 4px;
             }
+
+            /* --- Back Button Styles --- */
+            .back-button {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                
+                /* Matching the timeline p styles exactly */
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 16px;
+                color: black;      /* Ensures it is black like the text, not blue */
+                text-decoration: none; /* Removes the underline */
+                cursor: pointer;
+            }
+
+            /* Optional: Adds an underline only when you hover over it */
+            .back-button:hover {
+                text-decoration: none;
+            }
             
         </style>
     </head>
     <body>
         <div class="p">
+
+                <a href="javascript:history.back()" class="back-button">BACK</a>
+                
             <ul>
                 <li><a href="https://example.com" data-image="example">GANSU, JANUARY 2026</a></li>
-                <li><a href="https://github.com" data-image="github">BLANK</a></li>
-                <li><a href="https://linkedin.com" data-image="linkedin">BLANK</a></li>
-                <li><a href="portfolio.html" data-image="portfolio">BLANK</a></li>
-                <li><a href="contact.html" data-image="contact">BLANK</a></li>
-                <li><a href="about.html" data-image="about">BLANK</a></li>
+                <li><a href="https://example.com" data-image="github">SHOWA AMERICAN STORY</a></li>
+                <li><a href="https://example.com" data-image="linkedin">ESQUELITO</a></li>
+                <li><a href="https://example.com" data-image="portfolio">NOSTOS</a></li>
+                <li><a href="https://example.com" data-image="contact">BLANK</a></li>
+                <li><a href="https://example.com" data-image="about">BLANK</a></li>
             </ul>
             
             <div class="image-container" id="imageContainer">
                 <!-- Images will be displayed here -->
                 <img src="gansu.jpg" alt="BLANK PREVIEW" class="hover-image" id="exampleImage" data-target="example">
-                <img src="image2.jpg" alt="BLANK PREVIEW" class="hover-image" id="githubImage" data-target="github">
+                <img src="sas.jpg" alt="BLANK PREVIEW" class="hover-image" id="githubImage" data-target="github">
                 <img src="image3.jpg" alt="BLANK PREVIEW" class="hover-image" id="linkedinImage" data-target="linkedin">
                 <img src="image4.jpg" alt="BLANK PREVIEW" class="hover-image" id="portfolioImage" data-target="portfolio">
                 <img src="image5.jpg" alt="BLANK PREVIEW" class="hover-image" id="contactImage" data-target="contact">
