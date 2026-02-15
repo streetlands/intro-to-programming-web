@@ -5,46 +5,65 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>HO YIK TO</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon">
-        <style type ="text/css">
-            .p a {
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Your font choice here */
-                font-size: 16px; /* Optional: change size */
-                font-weight: normal; /* Optional: normal, bold, etc. */
+        <style type="text/css">
+            /* General Body Setup */
+            body {
+                margin: 0;
+                padding: 20px; /* Gives your page a little breathing room */
             }
-            .p a {
-            text-decoration: none;
-            color: black;
+
+            /* Banner Image Styling */
+            .img_center {
+                display: block;
+                margin: 0 auto 30px auto; /* Centers image and adds space below */
+                max-width: 100%; 
+                width: 10   0%; /* Change this to adjust banner size */
             }
-            .p a {
+
+            /* Flexbox Navigation Setup */
+            .nav-menu {
+                display: flex;
+                justify-content: center; /* Centers the links horizontally */
+                flex-wrap: wrap; /* Allows links to wrap to a new line if the screen gets too small */
+                gap: 30px; /* Controls the exact spacing between links */
+            }
+
+            /* Link Styling */
+            .nav-menu a {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 16px;
+                text-decoration: none;
+                color: black;
                 font-weight: normal;
                 transition: text-shadow 0.2s;
             }
 
-            .p a:hover {
-                text-shadow: 0.70px 0 0 currentColor; /* Creates bold illusion */
-                /* Adjust the 0.35px value as needed for your font */
+            .nav-menu a:hover {
+                text-shadow: 0.70px 0 0 currentColor; 
             }
-            
-            .p td {
-                padding: 0 10px;
+
+            /* Mobile Adjustments */
+            @media (max-width: 600px) {
+                .nav-menu {
+                    flex-direction: column; /* Stacks the links vertically on phones */
+                    align-items: center; /* Centers the stacked links */
+                    gap: 15px; /* Tighter spacing for vertical view */
+                }
+                .img_center {
+                    width: 100%; /* Makes the banner fill more of a small screen */
+                }
             }
-            .img_center {
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                width: 30%;
-            }
-            </style>
+        </style>
     </head>
     <body>
-        <img class="img_center" src="logo.png">
-        <table width="10" border="0" align="center" cellpadding="0" cellspacing="0">
-            <tr align="center" class="p"> 
-            <td width="9%"><a href="about.html">ABOUT</a></td>
-             <td width="8%"><a href="https://www.youtube.com/@hoyikto" target="_blank">VIDEOS</a></td>
-             <td width="9%"><a href="projects.html">PROJECTS</a></td>
-            <td width="8%"><a href="contact.html">CONTACT</a></td>
-            <td width="9%"><a href="https://www.instagram.com/hoyikto_/" target="_blank">INSTAGRAM</a></td>
-    </tr>
+        <img class="img_center" src="Banner.png" alt="Website Banner">
+        
+        <nav class="nav-menu">
+            <a href="about.html">ABOUT</a>
+            <a href="https://www.youtube.com/@hoyikto" target="_blank">VIDEOS</a>
+            <a href="projects.html">PROJECTS</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="https://www.instagram.com/hoyikto_/" target="_blank">INSTAGRAM</a>
+        </nav>
     </body>
 </html>
