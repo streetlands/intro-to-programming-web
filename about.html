@@ -4,50 +4,71 @@
     <meta charset="UTF-8">
     <title>HO YIK TO</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <style type="text/css">
-       /* --- Timeline Text Styles --- */
-       .timeline p {
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 16px;
-        margin: 10px 0;
-        line-height: 1.6;
-       }
-    
-        .year {
-        font-weight: bold;
-        display: inline-block;
-        width: 100px;
-        margin-right: 20px;
-       }
+    <style>
+        /* --- Global Styles --- */
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            color: black;
+            line-height: 1.6;
+            margin: 20px; 
+        }
 
-       /* --- Back Button Styles --- */
-       .back-button {
-        position: absolute;
-        top: 20px;
-        right: 20px;
+        /* --- Timeline Text Styles --- */
+        .timeline p {
+            margin: 10px 0;
+        }
         
-        /* Matching the timeline p styles exactly */
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 16px;
-        color: black;      /* Ensures it is black like the text, not blue */
-        text-decoration: none; /* Removes the underline */
-        cursor: pointer;
-       }
+        .year {
+            font-weight: bold;
+            display: inline-block;
+            width: 100px;
+            margin-right: 20px;
+        }
 
-       /* Optional: Adds an underline only when you hover over it */
-       .back-button:hover {
-        text-decoration: none;
-       }
-</style>
+        /* --- Back Button Styles --- */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            color: black;      
+            text-decoration: none; 
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            text-decoration: underline; 
+        }
+
+        /* --- Image Gallery Styles --- */
+        .image-container {
+            display: flex;       /* This is the magic rule that puts things side-by-side */
+            gap: 20px;           /* Adds a 20px gap between the two images */
+            margin-bottom: 20px; /* Keeps the space between the images and your text */
+        }
+
+        .site-image {
+            width: 300px; 
+            height: auto; 
+            /* Removed 'display: block' and 'margin' from here since the container handles it now */
+        }
+    </style>
 </head>
 <body>
 
     <a href="javascript:history.back()" class="back-button">BACK</a>
 
-    <div class="timeline">
-        <p><span class="year">2002</span> BORN IN HONG KONG</p>
-        <p><span class="year">2026</span> GRADUATED FROM BERKLEE COLLEGE OF MUSIC, BOSTON</p>
+    <div class="image-container">
+        <img src="hoyikto.png" class="site-image" alt="Ho Yik To">
+        <img src="hoyikto2.png" class="site-image" alt="Ho Yik To">
     </div>
+
+    <p> <strong> HO YIK TO </strong>WAS BORN IN 2002 IN HONG KONG. <br>
+        IN 2009, HE ATTENDED THE HONG KONG ACADEMY OF PERFORMING ARTS TO STUDY CELLO. <br>
+        HE IS CURRENTLY A STUDENT AT THE BERKLEE COLLEGE OF MUSIC, PURSUING A DEGREE IN GAME AND INTERACTIVE MEDIA SCORING.</p>
+
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"ff8cbcdf3a0f4674a4587c78c019a4c3","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 
 </body>
 </html>

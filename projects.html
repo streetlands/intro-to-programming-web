@@ -1,157 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>HO YIK TO</title>
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
-        <style type="text/css">
-            .p a {
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                font-size: 16px;
-                font-weight: normal;
-                text-decoration: none;
-                color: black;
-                transition: text-shadow 0.2s;
-                display: inline-block;
-            }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HO YIK TO</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  
+  <style>
+    /* --- Global Typography & Links --- */
+    .p a, 
+    .back-button {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      color: black;
+      text-decoration: none;
+    }
 
-            .p a:hover {
-                text-shadow: 0.70px 0 0 currentColor;
-            }
-            
-            /* Remove bullet points from the list */
-            .p ul {
-                list-style-type: none;
-                padding-left: 0;
-                margin: 0 0 20px 0; /* Add bottom margin for image display area */
-            }
-            
-            /* Add spacing between links */
-            .p li {
-                margin-bottom: 10px;
-            }
-            
-            /* Image container that appears below the list */
-            .image-container {
-                position: relative;
-                min-height: 200px; /* Reserve space for images */
-                width: 100%;
-                margin-top: 20px;
-            }
-            
-            /* Individual hover images - hidden by default */
-            .hover-image {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 800px; /* Adjust image size as needed */
-                height: auto;
-                max-width: 100%;
-                opacity: 0;
-                visibility: hidden;
-                transition: opacity 0.1s ease;
-                border-radius: 4px;
-            }
+    /* --- Back Button Specifics --- */
+    .back-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+    }
 
-            /* --- Back Button Styles --- */
-            .back-button {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                
-                /* Matching the timeline p styles exactly */
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                font-size: 16px;
-                color: black;      /* Ensures it is black like the text, not blue */
-                text-decoration: none; /* Removes the underline */
-                cursor: pointer;
-            }
+    /* --- List Links --- */
+    .p a {
+      font-weight: normal;
+      transition: text-shadow 0.2s;
+      display: inline-block;
+    }
 
-            /* Optional: Adds an underline only when you hover over it */
-            .back-button:hover {
-                text-decoration: none;
-            }
-            
-        </style>
-    </head>
-    <body>
-        <div class="p">
+    .p a:hover {
+      text-shadow: 0.70px 0 0 currentColor;
+    }
+    
+    .p ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0 0 20px 0;
+    }
+    
+    .p li {
+      margin-bottom: 10px;
+    }
+    
+    /* --- Image Container & Hover Effects --- */
+    .image-container {
+      position: relative;
+      min-height: 200px;
+      width: 100%;
+      margin-top: 20px;
+    }
+    
+    .hover-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 800px;
+      max-width: 100%;
+      height: auto;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.1s ease;
+      border-radius: 4px;
+    }
 
-                <a href="javascript:history.back()" class="back-button">BACK</a>
-                
-            <ul>
-                <li><a href="https://example.com" data-image="example">GANSU, JANUARY 2026</a></li>
-                <li><a href="https://example.com" data-image="github">SHOWA AMERICAN STORY</a></li>
-                <li><a href="https://example.com" data-image="linkedin">ESQUELITO</a></li>
-                <li><a href="https://example.com" data-image="portfolio">NOSTOS</a></li>
-                <li><a href="https://example.com" data-image="contact">BLANK</a></li>
-                <li><a href="https://example.com" data-image="about">BLANK</a></li>
-            </ul>
-            
-            <div class="image-container" id="imageContainer">
-                <!-- Images will be displayed here -->
-                <img src="gansu.jpg" alt="BLANK PREVIEW" class="hover-image" id="exampleImage" data-target="example">
-                <img src="sas.jpg" alt="BLANK PREVIEW" class="hover-image" id="githubImage" data-target="github">
-                <img src="image3.jpg" alt="BLANK PREVIEW" class="hover-image" id="linkedinImage" data-target="linkedin">
-                <img src="image4.jpg" alt="BLANK PREVIEW" class="hover-image" id="portfolioImage" data-target="portfolio">
-                <img src="image5.jpg" alt="BLANK PREVIEW" class="hover-image" id="contactImage" data-target="contact">
-                <img src="image6.jpg" alt="BLANK PREVIEW" class="hover-image" id="aboutImage" data-target="about">
-            </div>
-        </div>
+    /* New class to handle showing images cleanly */
+    .hover-image.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="p">
+    <a href="javascript:history.back()" class="back-button">BACK</a>
         
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('.p a[data-image]');
-            const allImages = document.querySelectorAll('.hover-image');
-            const imageContainer = document.getElementById('imageContainer');
-            
-            // Hide all images initially
-            allImages.forEach(img => {
-                img.style.opacity = '0';
-                img.style.visibility = 'hidden';
-            });
-            
-            // Add hover event to each link
-            links.forEach(link => {
-                const imageId = link.getAttribute('data-image');
-                const targetImage = document.getElementById(imageId + 'Image');
-                
-                if (!targetImage) return;
-                
-                link.addEventListener('mouseenter', function() {
-                    // Hide all images
-                    allImages.forEach(img => {
-                        img.style.opacity = '0';
-                        img.style.visibility = 'hidden';
-                    });
-                    
-                    // Show the corresponding image
-                    targetImage.style.opacity = '1';
-                    targetImage.style.visibility = 'visible';
-                });
-                
-                link.addEventListener('mouseleave', function() {
-                    // Optional: Keep image visible or hide it
-                    // For now, we'll hide it when mouse leaves the link
-                    // targetImage.style.opacity = '0';
-                    // targetImage.style.visibility = 'hidden';
-                });
-            });
-            
-            // Optional: Keep image visible when hovering over the image container
-            imageContainer.addEventListener('mouseenter', function() {
-                // Don't hide images when hovering over the container
-            });
-            
-            imageContainer.addEventListener('mouseleave', function() {
-                // Hide all images when mouse leaves the container
-                allImages.forEach(img => {
-                    img.style.opacity = '0';
-                    img.style.visibility = 'hidden';
-                });
-            });
+    <ul>
+      <li><a href="https://example.com" data-image="example">GANSU, JANUARY 2026</a></li>
+      <li><a href="https://example.com" data-image="github">SHOWA AMERICAN STORY</a></li>
+      <li><a href="https://example.com" data-image="linkedin">ESQUELITO</a></li>
+      <li><a href="https://example.com" data-image="portfolio">NOSTOS</a></li>
+      <li><a href="https://example.com" data-image="contact">BLANK</a></li>
+      <li><a href="https://example.com" data-image="about">BLANK</a></li>
+    </ul>
+    
+    <div class="image-container" id="imageContainer">
+      <img src="gansu.jpg" alt="Preview: Gansu" class="hover-image" id="exampleImage">
+      <img src="sas.jpg" alt="Preview: Showa American Story" class="hover-image" id="githubImage">
+      <img src="image3.jpg" alt="Preview: Esquelito" class="hover-image" id="linkedinImage">
+      <img src="image4.jpg" alt="Preview: Nostos" class="hover-image" id="portfolioImage">
+      <img src="image5.jpg" alt="Preview: Contact" class="hover-image" id="contactImage">
+      <img src="image6.jpg" alt="Preview: About" class="hover-image" id="aboutImage">
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('.p a[data-image]');
+      const allImages = document.querySelectorAll('.hover-image');
+      const imageContainer = document.getElementById('imageContainer');
+      
+      links.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+          const imageId = link.getAttribute('data-image');
+          const targetImage = document.getElementById(`${imageId}Image`);
+          
+          if (targetImage) {
+            // Remove active class from all images, add to target
+            allImages.forEach(img => img.classList.remove('active'));
+            targetImage.classList.add('active');
+          }
         });
-        </script>
-    </body>
+      });
+      
+      // Hide images when mouse leaves the image container area
+      imageContainer.addEventListener('mouseleave', () => {
+        allImages.forEach(img => img.classList.remove('active'));
+      });
+    });
+  </script>
+</body>
 </html>
