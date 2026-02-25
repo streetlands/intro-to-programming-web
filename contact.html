@@ -13,13 +13,22 @@
             background-color: white;
             line-height: 1.6;
             margin: 0;
-            padding: 60px 20px; /* Adds top padding, replacing the old <br> tags */
+            padding: 60px 20px; 
+            
+            /* --- Background Image Settings --- */
+            background-image: url('tigerblack.png');
+            background-repeat: no-repeat;
+            background-position: center center; /* Centers the image */
+            background-size: 120vw; /* Keeps your preferred 90vw size */
+            background-attachment: fixed; /* Locks the image in place even if you scroll */
         }
 
         /* --- Layout Styles --- */
         .content-container {
             max-width: 700px;
-            margin: 0 auto; /* This centers your text just like the old table did */
+            margin: 0 auto; 
+            position: relative; /* Ensures the container sits above the background */
+            z-index: 1;
         }
 
         /* --- Typography Styles --- */
@@ -36,7 +45,7 @@
         }
 
         a:hover {
-            text-decoration: none; /* Removes underline when hovering over links */
+            text-decoration: none; 
         }
 
         /* --- Back Button Styles --- */
@@ -53,23 +62,22 @@
         }
 
         .back-button:hover {
-            text-decoration: underline; /* Restored your hover effect here */
+            text-decoration: underline; 
         }
     </style>
 </head>
 <body>
-
+    
     <a href="javascript:history.back()" class="back-button">BACK</a>
 
     <div class="content-container">
         <div class="section-title">Contact</div>
         
         <p>
-            INSTAGRAM <a href="https://www.instagram.com/hoyikto_/" target="_blank">@hoyikto_</a><br>
-            EMAIL <a href="mailto:info@hoyikto.com">info@hoyikto.com</a>
+            <strong>INSTAGRAM</strong> <a href="https://www.instagram.com/hoyikto_/" target="_blank">@hoyikto_</a><br>
+            <strong>EMAIL</strong> <a href="mailto:info@hoyikto.com">info@hoyikto.com</a>
         </p>
 
         </div>
 
 </body>
-</html>
