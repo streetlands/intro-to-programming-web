@@ -2,45 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HO YIK TO</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         /* --- Global Styles --- */
+        html, body {
+            min-height: 100vh; 
+            margin: 0;
+        }
+
         body {
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             font-size: 16px;
-            color: black;
-            background-color: white;
+            color: black; 
+            background-color: white; 
             line-height: 1.6;
-            margin: 0;
             padding: 60px 20px; 
+            box-sizing: border-box; 
+            
+            text-shadow: 0px 0px 8px white, 0px 0px 15px white;
             
             /* --- Background Image Settings --- */
             background-image: url('tigerblack.png');
             background-repeat: no-repeat;
-            background-position: center center; /* Centers the image */
-            background-size: 120vw; /* Keeps your preferred 90vw size */
-            background-attachment: fixed; /* Locks the image in place even if you scroll */
+            background-position: center center; 
+            background-size: 120vw; 
+            background-attachment: fixed; 
         }
 
         /* --- Layout Styles --- */
         .content-container {
             max-width: 700px;
             margin: 0 auto; 
-            position: relative; /* Ensures the container sits above the background */
+            position: relative; 
             z-index: 1;
         }
 
         /* --- Typography Styles --- */
         .section-title {
             font-size: 18px;
-            font-weight: bold;
-            text-transform: uppercase;
             margin-bottom: 20px;
+            /* UPDATED: Removed the bold text from the title */
+            font-weight: normal; 
         }
 
         a {
-            color: black;
+            color: black; 
             text-decoration: underline;
         }
 
@@ -59,10 +67,67 @@
             color: black;      
             text-decoration: none; 
             cursor: pointer;
+            text-shadow: 0px 0px 8px white, 0px 0px 15px white;
         }
 
         .back-button:hover {
             text-decoration: underline; 
+        }
+
+        /* --- Contact Form Styles --- */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; 
+            margin-top: 40px; 
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 16px;
+            color: black;
+            
+            background-color: white; 
+            border: 1px solid black;
+            border-radius: 0; 
+            
+            box-sizing: border-box;
+            text-shadow: none; 
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #555; 
+        }
+
+        .contact-form button {
+            padding: 12px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: normal; 
+            color: black;
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 0;
+            
+            cursor: pointer;
+            text-shadow: none;
+            transition: background-color 0.2s;
+        }
+
+        .contact-form button:hover {
+            background-color: #f0f0f0; 
+        }
+
+        /* --- Mobile Specific Styles --- */
+        @media screen and (max-width: 768px) {
+            body {
+                background-size: cover; 
+                background-attachment: scroll; 
+            }
         }
     </style>
 </head>
@@ -74,10 +139,18 @@
         <div class="section-title">Contact</div>
         
         <p>
-            <strong>INSTAGRAM</strong> <a href="https://www.instagram.com/hoyikto_/" target="_blank">@hoyikto_</a><br>
-            <strong>EMAIL</strong> <a href="mailto:info@hoyikto.com">info@hoyikto.com</a>
+            <a href="https://www.instagram.com/hoyikto_/">instagram.com/hoyikto_</a><br>
+            <a href="mailto:info@hoyikto.com">info@hoyikto.com</a>
         </p>
 
-        </div>
+        <form action="https://formspree.io/f/xkovlqak" method="POST" class="contact-form">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" placeholder="Message" rows="5" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+
+    </div>
 
 </body>
+</html>
