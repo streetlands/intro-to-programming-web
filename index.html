@@ -3,35 +3,36 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="referrer" content="strict-origin-when-cross-origin">
         <title>HO YIK TO</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <style type="text/css">
             /* General Body Setup */
             body {
                 margin: 0;
-                padding: 20px; /* Gives your page a little breathing room */
+                padding: 20px;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             }
 
             /* Banner Image Styling */
             .img_center {
                 display: block;
-                margin: 0 auto 30px auto; /* Centers image and adds space below */
+                margin: 0 auto 30px auto;
                 max-width: 70%; 
-                width: 100%; /* Change this to adjust banner size */
-                transform: translateX(-10px)
+                width: 100%;
+                transform: translateX(-10px);
             }
 
             /* Flexbox Navigation Setup */
             .nav-menu {
                 display: flex;
-                justify-content: center; /* Centers the links horizontally */
-                flex-wrap: wrap; /* Allows links to wrap to a new line if the screen gets too small */
-                gap: 30px; /* Controls the exact spacing between links */
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 30px;
             }
 
             /* Link Styling */
             .nav-menu a {
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
                 font-size: 16px;
                 text-decoration: none;
                 color: black;
@@ -43,15 +44,97 @@
                 text-shadow: 0.70px 0 0 currentColor; 
             }
 
+            /* --- NEW MODAL STYLES --- */
+            
+            /* The Modal (background) */
+            .modal {
+                display: none; 
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8); 
+            }
+
+            /* Modal Content Box */
+            .modal-content {
+                background-color: #fff;
+                margin: 5% auto; 
+                padding: 20px;
+                width: 90%;
+                max-width: 800px;
+                text-align: center;
+                position: relative;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+
+            /* Responsive Video Container (maintains 16:9 aspect ratio) */
+            .video-container {
+                position: relative;
+                padding-bottom: 56.25%;
+                height: 0;
+                overflow: hidden;
+                margin-top: 15px;
+                margin-bottom: 25px;
+            }
+
+            .video-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+
+            /* Close Button */
+            .close-button {
+                color: #aaa;
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: color 0.2s;
+            }
+
+            .close-button:hover,
+            .close-button:focus {
+                color: #000;
+                text-decoration: none;
+            }
+
+            /* Continue Text Styling */
+            .continue-btn {
+                display: inline-block;
+                color: black;
+                font-size: 16px;
+                text-decoration: none;
+                text-transform: uppercase;
+                transition: text-shadow 0.2s;
+            }
+
+            .continue-btn:hover {
+                text-shadow: 0.70px 0 0 currentColor; 
+            }
+
             /* Mobile Adjustments */
             @media (max-width: 600px) {
                 .nav-menu {
-                    flex-direction: column; /* Stacks the links vertically on phones */
-                    align-items: center; /* Centers the stacked links */
-                    gap: 15px; /* Tighter spacing for vertical view */
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 15px;
                 }
                 .img_center {
-                    width: 100%; /* Makes the banner fill more of a small screen */
+                    width: 100%;
+                }
+                .modal-content {
+                    margin: 15% auto;
+                    width: 95%;
+                    padding: 15px;
                 }
             }
         </style>
@@ -61,8 +144,55 @@
         
         <nav class="nav-menu">
             <a href="about.html">ABOUT</a>
-            <a href="https://www.youtube.com/@hoyikto" target="_blank">PROJECTS</a>
+            <a href="#" id="projects-link">PROJECTS</a>
             <a href="contact.html">CONTACT</a>
         </nav>
+
+        <div id="videoModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                
+                <div class="video-container">
+                    <iframe id="yt-player" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <a href="https://www.youtube.com/@hoyikto" target="_blank" class="continue-btn">Continue</a>
+            </div>
+        </div>
+
+        <script>
+            // --- ENTER YOUR YOUTUBE VIDEO ID HERE ---
+            const VIDEO_ID = 'AqhTeD6HwlU'; 
+
+            // Get the elements
+            const modal = document.getElementById("videoModal");
+            const projectsLink = document.getElementById("projects-link");
+            const closeBtn = document.querySelector(".close-button");
+            const ytPlayer = document.getElementById("yt-player");
+
+          // Open the modal and auto-play the video
+            projectsLink.onclick = function(event) {
+                event.preventDefault(); // Prevents the page from scrolling to the top
+                modal.style.display = "block";
+                // USING YOUTUBE-NOCOOKIE.COM TO BYPASS ERROR 153
+                ytPlayer.src = `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1`;
+            }
+
+            // Function to close modal and stop video
+            function closeModal() {
+                modal.style.display = "none";
+                ytPlayer.src = ""; // Clears the source to stop the video from playing in the background
+            }
+
+            // Click the (X) button to close
+            closeBtn.onclick = closeModal;
+
+            // Click anywhere outside of the modal content to close
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    closeModal();
+                }
+            }
+        </script>
     </body>
 </html>
