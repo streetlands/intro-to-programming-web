@@ -12,6 +12,8 @@
                 margin: 0;
                 padding: 20px;
                 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                /* Prevents zoomed/shifted elements from creating phantom scroll space */
+                overflow-x: hidden; 
             }
 
             /* Banner Image Styling */
@@ -20,7 +22,8 @@
                 margin: 0 auto 30px auto;
                 max-width: 70%; 
                 width: 100%;
-                transform: translateX(-10px);
+                /* Increased the negative value to push it further left */
+                transform: translateX(-15px); 
             }
 
             /* Flexbox Navigation Setup */
@@ -123,18 +126,34 @@
 
             /* Mobile Adjustments */
             @media (max-width: 600px) {
+                body {
+                    /* Removes the global bottom padding to tighten up the empty space */
+                    padding-bottom: 0; 
+                }
                 .nav-menu {
                     flex-direction: column;
                     align-items: center;
-                    gap: 15px;
+                    gap: 20px; 
+                    /* Ensures no lingering margin below the flex container */
+                    margin-bottom: 0; 
+                }
+                .nav-menu a {
+                    font-size: 20px; 
                 }
                 .img_center {
                     width: 100%;
+                    max-width: 100%; 
+                    /* Reduced bottom margin so the text sits closer to the image */
+                    margin-bottom: 15px; 
+                    transform: translateX(-15px) scale(1.15); 
                 }
                 .modal-content {
                     margin: 15% auto;
                     width: 95%;
                     padding: 15px;
+                }
+                .continue-btn {
+                    font-size: 18px; 
                 }
             }
         </style>
@@ -170,7 +189,7 @@
             const closeBtn = document.querySelector(".close-button");
             const ytPlayer = document.getElementById("yt-player");
 
-          // Open the modal and auto-play the video
+            // Open the modal and auto-play the video
             projectsLink.onclick = function(event) {
                 event.preventDefault(); // Prevents the page from scrolling to the top
                 modal.style.display = "block";
